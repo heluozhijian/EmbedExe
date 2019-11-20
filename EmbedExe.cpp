@@ -58,15 +58,15 @@ void EmbedExe::onPushButtonClicked(void)
 
 void EmbedExe::EmbedCalc(HWND hWnd)
 {
-    qDebug() << "EmbedExe::EmbedCalc" << hWnd;
+    qDebug() << "Parent window:" << hWnd;
 
     HWND calcHwnd = FindWindow(L"ApplicationFrameWindow", L"计算器");
     if(calcHwnd != nullptr)
     {
-        qDebug() << "EmbedExe::EmbedCalc" << calcHwnd;
+        qDebug() << "Child window:" << calcHwnd;
         // Change the parent so the calc window belongs to our apps main window
         HWND ret = SetParent(calcHwnd, hWnd);
-        qDebug() << "EmbedExe::EmbedCalc - SetParent" << ret;
+        qDebug() << "SetParent - ret" << ret;
 
         // Update the style so the calc window is embedded in our main window
         SetWindowLong(calcHwnd, GWL_STYLE, GetWindowLong(calcHwnd, GWL_STYLE) | WS_CHILD);
